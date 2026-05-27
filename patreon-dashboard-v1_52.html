@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patreon & Trium | 2026</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* Trium brand palette */
+  --carbon:        #000000;
+  --blue-gray:     #53616e;
+  --deep-yellow:   #ffa500;
+  --canvas:        #ffffff;
+  --sage:          #a6c1b5;
+  --brown:         #634e42;
+  --spice:         #f5642e;
+  --warm-neutral:  #ddd6d3;
+
+  /* Page tokens */
+  --white:         #ffffff;
+  --off-white:     #edeae5;
+  --surface:       #e4e0d9;
+  --border:        rgba(0,0,0,0.09);
+  --border-strong: rgba(0,0,0,0.18);
+  --text-primary:  #111111;
+  --text-secondary:#53616e;
+  --text-tertiary: #8a8580;
+
+  /* Functional */
+  --navy:          #53616e;
+  --accent:        #ffa500;
+  --green:         #2a6b52;
+  --green-bg:      #e8f1ed;
+  --amber:         #7a4e00;
+  --amber-bg:      #fff3dc;
+  --red:           #b03020;
+  --red-bg:        #fdecea;
+  --blue:          #53616e;
+  --blue-bg:       #eef0f2;
+
+  /* Typography */
+  --font-serif: 'Times New Roman', Georgia, serif;
+  --font-sans:  Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--off-white);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 60px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 40px 0 28px;
+  border-bottom: 2px solid var(--carbon);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header-wordmark {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+.header h1 {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--carbon);
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+.data-date {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* Tab nav */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.tab-btn {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+}
+.tab-btn:hover { color: var(--text-primary); }
+.tab-btn.active {
+  color: var(--carbon);
+  border-bottom-color: var(--deep-yellow);
+}
+
+/* Survey stats bar */
+.survey-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: var(--blue-gray);
+}
+.survey-stats.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.survey-stat {
+  padding: 20px 24px;
+  background: var(--blue-gray);
+}
+.survey-stat-value {
+  font-family: var(--font-sans);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.survey-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+.survey-stat + .survey-stat {
+  border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Quotes */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.quote-card {
+  background: var(--blue-gray);
+  border-radius: 4px;
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.quote-mark {
+  font-family: var(--font-serif);
+  font-size: 72px;
+  color: var(--deep-yellow);
+  line-height: 0.5;
+}
+.quote-text {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.6;
+  flex: 1;
+}
+.quote-attr {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.4px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { background: var(--surface); }
+.filter-btn.active {
+  background: var(--carbon);
+  color: var(--white);
+  border-color: var(--carbon);
+}
+
+/* Engagement cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  gap: 12px;
+}
+.card-person { flex: 1; min-width: 0; }
+.card-name {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--carbon);
+}
+.card-title {
+  font-size: 12px;
+  color: var(--carbon);
+  margin-top: 2px;
+}
+.card-coach {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+.card-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.closes-soon {
+  font-size: 11px;
+  color: var(--spice);
+  font-weight: 500;
+}
+
+
+
+.card-util {
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+.util-item-label {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+.util-item-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+
+/* Timeline bar */
+.timeline-bar-wrap {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tl-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-bottom: 5px;
+  padding-top: 4px;
+}
+.tl-track-outer {
+  position: relative;
+  height: 5px;
+  background: var(--surface);
+  border-radius: 3px;
+  overflow: visible;
+  margin-bottom: 14px;
+}
+.tl-today-tick {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 11px;
+  background: var(--deep-yellow);
+  border-radius: 1px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.tl-today-tick::after {
+  content: 'today';
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: var(--brown);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+.stat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--carbon);
+  line-height: 1;
+}
+.stat-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* SOW grid */
+.sow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Alumni */
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.alumni-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s;
+}
+.alumni-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+.alumni-name { font-weight: 500; font-size: 15px; color: var(--text-primary); }
+.alumni-title { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+.alumni-coach { font-size: 11.5px; color: var(--text-tertiary); }
+.alumni-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.alumni-sessions {
+  font-size: 11px;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2px 9px;
+  color: var(--text-secondary);
+}
+.alumni-year { font-size: 11px; color: var(--text-tertiary); }
+.alumni-no-eoe { font-size: 11px; color: var(--text-tertiary); font-style: italic; }
+.alumni-status-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 2px 9px;
+}
+.alumni-status-active {
+  color: var(--green);
+  background: var(--green-bg);
+  border: 1px solid rgba(42,107,82,0.25);
+}
+.alumni-status-wrapped {
+  color: var(--text-tertiary);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+}
+.alumni-active-sow { border-left: 3px solid var(--green) !important; }
+.alumni-wrapped    { border-left: 3px solid var(--border-strong) !important; }
+.alumni-engagements { font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+
+/* EoE toggle */
+.eoe-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--blue-bg);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 2px;
+  transition: opacity 0.15s;
+  width: 100%;
+  text-align: left;
+}
+.eoe-toggle:hover { opacity: 0.78; }
+.eoe-toggle svg { transition: transform 0.2s; flex-shrink: 0; margin-left: auto; }
+.eoe-toggle.open svg { transform: rotate(180deg); }
+.eoe-panel { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.eoe-panel.open { display: block; }
+.eoe-section { margin-bottom: 12px; }
+.eoe-section:last-child { margin-bottom: 0; }
+.eoe-section-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 5px;
+}
+.eoe-section-body { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+.eoe-section-body ul { padding-left: 14px; }
+.eoe-section-body li { margin-bottom: 3px; }
+
+/* Impact section wrapper */
+.impact-section { margin-bottom: 32px; }
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.footer-logo {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--carbon);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .page { padding: 0 16px 40px; }
+  .cards { grid-template-columns: 1fr; }
+  .quotes-grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .alumni-grid { grid-template-columns: 1fr; }
+  .sow-grid { grid-template-columns: 1fr; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinning { animation: spin 0.8s linear infinite; transform-origin: center; }
+.cal-chip { position: relative; }
+.cal-chip .cal-tip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--carbon);
+  color: var(--white);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: nowrap;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+}
+.cal-chip .cal-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--carbon);
+}
+.cal-chip:hover .cal-tip { display: block; }
+.cal-tip-name  { font-weight: 600; color: var(--white); }
+.cal-tip-coach { color: rgba(255,255,255,0.65); }
+.cal-tip-time  { color: var(--deep-yellow); margin-top: 2px; }
+.cal-tip-ip    { color: rgba(255,255,255,0.5); font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div>
+      <div class="header-wordmark">The Trium Group</div>
+      <h1>Patreon & Trium | 2026</h1>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <span class="data-date" id="last-updated"></span>
+      <button id="refresh-btn" onclick="refreshData()" style="font-family:Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--white);background:var(--carbon);border:none;padding:7px 16px;cursor:pointer;transition:opacity 0.15s;display:flex;align-items:center;gap:7px;border-radius:2px" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+        <svg id="refresh-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 5.5A4 4 0 1 1 7.2 2.1" stroke="white" stroke-width="1.3" stroke-linecap="round"/><path d="M7 1l.2 1.5L8.7 2" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="refresh-label">Refresh data</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Tab nav -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('active')">Active Coachees</button>
+    <button class="tab-btn" onclick="showTab('sow')">SOWs</button>
+    <button class="tab-btn" onclick="showTab('offsite')">Offsites</button>
+    <button class="tab-btn" onclick="showTab('calendar')">Calendar</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       ACTIVE TAB
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-active">
+
+    <div class="controls">
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="stats" id="stats"></div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SOW TAB
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-sow" style="display:none">
+    <div class="controls" style="margin-bottom:16px">
+      <span class="section-label">Recent Patreon deals · HubSpot</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+
+      <!-- Deal 1 — most recent -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:box-shadow 0.15s" onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
+        <div>
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px">Most recent</div>
+          <div style="font-size:16px;font-weight:500;color:var(--carbon);margin-bottom:8px">Patreon Executive Team and EPD Functional Performance H2 2026 <span style="font-weight:400;color:var(--text-secondary)">· $756,000</span></div>
+          <div style="border-left:3px solid #b0ceed;padding:8px 12px;background:#deeaf7;border-radius:0 4px 4px 0;margin-top:14px">
+            <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.6px;color:#2a5a8c;margin-bottom:3px">Latest activity</div>
+            <div style="font-size:14px;font-weight:500;color:#1a3a5c;display:flex;align-items:center;gap:7px">
+              <svg width="14" height="14" viewBox="0 0 11 11" fill="none"><path d="M1 2.5h9v7H1V2.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M1 2.5l4.5 4 4.5-4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Stephanie sent proposal to Jack &amp; Kathleen on May 4, 2026
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+          <span style="font-size:14px;font-weight:600;color:#7a4e00;background:#fff3dc;border:1px solid #e8c96a;border-radius:20px;padding:8px 18px;white-space:nowrap;letter-spacing:0.01em">Proposal Sent</span>
+          <span style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-tertiary);background:var(--surface);border:1px dashed var(--border-strong);border-radius:4px;padding:7px 13px;white-space:nowrap;opacity:0.6;cursor:default">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 1.5h6.5L11 4v7.5H2V1.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M8.5 1.5V4H11" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+            Pending SOW
+          </span>
+          <a href="https://app.hubspot.com/contacts/7040355/record/0-3/50454339133?utm_source=app_16228553_mcp&utm_medium=ai_agent&utm_campaign=search" target="_blank" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border-strong);border-radius:4px;padding:7px 13px;white-space:nowrap;transition:opacity 0.15s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.1"/><path d="M6.5 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+            HubSpot
+          </a>
+        </div>
+      </div>
+
+      <!-- Deal 2 -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:4px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+        <div>
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px">Previous</div>
+          <div style="font-size:16px;font-weight:500;color:var(--carbon);margin-bottom:4px">Patreon CEO & Executive Coaching and Team Cohesion H1 2026 <span style="font-weight:400;color:var(--text-secondary)">· $495,000</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+          <span style="font-size:14px;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid rgba(42,107,82,0.25);border-radius:20px;padding:8px 18px;white-space:nowrap;letter-spacing:0.01em">Closed Won</span>
+          <a href="https://app.pandadoc.com/a/#/documents/JaYU9EzrJoykG2NVn3TD2d" target="_blank" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border-strong);border-radius:4px;padding:7px 13px;white-space:nowrap;transition:opacity 0.15s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 1.5h6.5L11 4v7.5H2V1.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M8.5 1.5V4H11" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+            View SOW
+          </a>
+          <a href="https://app.hubspot.com/contacts/7040355/record/0-3/49908659790?utm_source=app_16228553_mcp&utm_medium=ai_agent&utm_campaign=search" target="_blank" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border-strong);border-radius:4px;padding:7px 13px;white-space:nowrap;transition:opacity 0.15s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.1"/><path d="M6.5 4v3l2 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+            HubSpot
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       OFFSITE DATES TAB
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-offsite" style="display:none">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+
+      <!-- PLT COLUMN -->
+      <div>
+        <div style="font-size:14px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--carbon)">Patreon Leadership Team</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+
+          <!-- Q1 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:4px 0 2px">Q1</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--border-strong);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px;opacity:0.65">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">Feb<br><span style="font-size:18px">4</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px">Completed</div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:8px 0 2px">Q2</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--border-strong);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px;opacity:0.65">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">Apr<br><span style="font-size:18px">16</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px">Completed</div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:8px 0 2px">Q3</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--deep-yellow);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">Jul<br><span style="font-size:18px">15–17</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <span style="font-size:10px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(122,78,0,0.2);border-radius:20px;padding:2px 9px;display:inline-block;margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px">Hold</span>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:8px 0 2px">Q4</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--deep-yellow);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">Oct<br><span style="font-size:18px">29–30</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <span style="font-size:10px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(122,78,0,0.2);border-radius:20px;padding:2px 9px;display:inline-block;margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px">Hold</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EPD COLUMN -->
+      <div>
+        <div style="font-size:14px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--carbon)">EPD Team</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+
+          <!-- Q1 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:4px 0 2px">Q1</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--border-strong);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px;opacity:0.65">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">Mar<br><span style="font-size:18px">3</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <div style="font-size:10px;color:var(--text-tertiary);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px">Completed</div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:8px 0 2px">Q3</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--deep-yellow);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">H2<br><span style="font-size:13px;color:var(--text-tertiary);font-family:var(--font-sans);font-weight:400;letter-spacing:0.5px">TBD</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <span style="font-size:10px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(122,78,0,0.2);border-radius:20px;padding:2px 9px;display:inline-block;margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px">Pending</span>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin:8px 0 2px">Q4</div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--deep-yellow);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:16px">
+            <div style="font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--carbon);min-width:52px;line-height:1">H2<br><span style="font-size:13px;color:var(--text-tertiary);font-family:var(--font-sans);font-weight:400;letter-spacing:0.5px">TBD</span></div>
+            <div style="width:1px;height:32px;background:var(--border-strong)"></div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--carbon)">@ Trium</div>
+              <span style="font-size:10px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(122,78,0,0.2);border-radius:20px;padding:2px 9px;display:inline-block;margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px">Pending</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ═══════════════════════════════════════════════════
+       CALENDAR TAB
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-calendar" style="display:none">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onclick="calNav(-1)" style="font-family:var(--font-sans);font-size:13px;padding:5px 13px;border-radius:20px;border:1px solid var(--border-strong);background:transparent;color:var(--text-secondary);cursor:pointer">← Prev</button>
+        <span id="cal-title" style="font-family:var(--font-serif);font-size:22px;font-weight:400;color:var(--carbon);min-width:180px;text-align:center"></span>
+        <button onclick="calNav(1)" style="font-family:var(--font-sans);font-size:13px;padding:5px 13px;border-radius:20px;border:1px solid var(--border-strong);background:transparent;color:var(--text-secondary);cursor:pointer">Next →</button>
+        <button onclick="goToday()" style="font-family:var(--font-sans);font-size:12px;font-weight:600;padding:5px 20px;border-radius:20px;border:1px solid var(--deep-yellow);background:var(--deep-yellow);color:var(--carbon);cursor:pointer;letter-spacing:0.02em">Today</button>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-secondary)"><span style="width:10px;height:10px;border-radius:2px;background:var(--blue-gray);display:inline-block"></span>Coaching session</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-secondary)"><span style="width:10px;height:10px;border-radius:2px;background:var(--deep-yellow);display:inline-block"></span>Symmetry call</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-secondary)"><span style="width:10px;height:10px;border-radius:2px;background:var(--sage);display:inline-block"></span>Offsite</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-secondary)">📍 In person</span>
+      </div>
+    </div>
+
+    <!-- Day headers -->
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px 4px 0 0;overflow:hidden;margin-bottom:1px">
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Sun</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Mon</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Tue</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Wed</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Thu</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Fri</div>
+      <div style="background:var(--surface);padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-tertiary)">Sat</div>
+    </div>
+
+    <!-- Calendar grid -->
+    <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;overflow:hidden"></div>
+
+  </div>
+
+  <footer class="footer">
+    <span class="footer-logo">THE TRIUM GROUP</span>
+  </footer>
+
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+// Source: Sessions table · Trium Coaching Airtable · Delivered status · H1 2026 SOW only
+// Updated: May 18 2026
+const DATA = [
+  {
+    name: "Jack Conte",
+    title: "CEO",
+    coach: "Stephanie Soler",
+    fn: "Executive",
+    cadence: "Weekly",
+    past: 12, lc: 0,
+    next: "2026-05-18",
+    close: "2026-07-12",
+    indStart: "2026-01-12"
+  },
+  {
+    name: "Shannon Ma",
+    title: "VP, Engineering",
+    coach: "Stephanie Soler",
+    fn: "Engineering",
+    cadence: "Bi-Weekly",
+    past: 5, lc: 0,
+    next: "2026-05-18",
+    close: "2026-09-09",
+    indStart: "2026-03-09"
+  },
+  {
+    name: "Drew Rowny",
+    title: "VP, Product",
+    coach: "Michelle Alana",
+    fn: "Product",
+    cadence: "Bi-Weekly",
+    past: 10, lc: 0,
+    next: "2026-05-22",
+    close: "2026-07-13",
+    indStart: "2026-01-13"
+  },
+  {
+    name: "Paige Fitzgerald",
+    title: "COO",
+    coach: "Michelle Alana",
+    fn: "Executive",
+    cadence: "Bi-Weekly",
+    past: 10, lc: 0,
+    next: "2026-06-08",
+    close: "2026-07-13",
+    indStart: "2026-01-13"
+  },
+  {
+    name: "Kathleen Pacini",
+    title: "Chief People Officer",
+    coach: "Michelle Alana",
+    fn: "People & HR",
+    cadence: "Monthly",
+    past: 6, lc: 0,
+    next: "2026-06-08",
+    close: "2026-07-13",
+    indStart: "2026-01-13"
+  },
+  {
+    name: "Nicole Hawkins",
+    title: "Chief of Staff, CEO",
+    coach: "Catherine Ambrozewicz",
+    fn: "Executive",
+    cadence: "Monthly",
+    past: 2, lc: 0,
+    next: null,
+    close: "2026-10-13",
+    indStart: "2026-04-13"
+  }
+];
+
+// ─── HELPERS ────────────────────────────────────────────────────────────────
+let af = 'all';
+
+function dU(d) {
+  if (!d) return null;
+  return Math.ceil((parseDate(d) - new Date()) / 86400000);
+}
+function parseDate(d) {
+  if (!d) return null;
+  const [y, m, day] = d.split('-').map(Number);
+  return new Date(y, m - 1, day); // local time, no UTC offset issue
+}
+function fD(d) {
+  if (!d) return null;
+  return parseDate(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function fMo(d) {
+  if (!d) return '—';
+  return parseDate(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+// ─── STATS ──────────────────────────────────────────────────────────────────
+function renderStats() {
+  document.getElementById('stats').innerHTML = `
+    <div class="stat" style="grid-column:1/-1;max-width:320px;text-align:left">
+      <div class="stat-label">Active coachees</div>
+      <div class="stat-value">${DATA.length}</div>
+      <div class="stat-sub">Current engagements</div>
+    </div>`;
+}
+
+// ─── FILTERS ────────────────────────────────────────────────────────────────
+function renderFilters() {
+  const fns = ['All', 'Executive', 'Engineering', 'Product', 'People & HR'];
+  document.getElementById('filters').innerHTML = fns.map(f =>
+    `<button class="filter-btn ${(af === 'all' && f === 'All') || af === f ? 'active' : ''}" onclick="sF('${f === 'All' ? 'all' : f}')">${f}</button>`
+  ).join('');
+}
+
+// ─── CARDS ──────────────────────────────────────────────────────────────────
+function renderCards() {
+  const list = af === 'all' ? DATA : DATA.filter(c => c.fn === af);
+  document.getElementById('cards').innerHTML = list.map(c => {
+    const d = dU(c.close);
+    const todayPct = (c.indStart && c.close)
+      ? Math.max(2, Math.min(98, Math.round(
+          (new Date() - parseDate(c.indStart)) /
+          (parseDate(c.close) - parseDate(c.indStart)) * 100
+        )))
+      : 50;
+    const holdBadge = c.onHold
+      ? `<span style="font-size:11px;font-weight:500;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(122,78,0,0.2);border-radius:20px;padding:3px 10px">Sessions paused</span>`
+      : '';
+
+    return `<div class="card" style="${c.onHold ? 'opacity:0.6' : ''}">
+      <div class="card-header">
+        <div class="card-person">
+          <div class="card-name">${c.name}</div>
+          <div class="card-title">${c.title}</div>
+          <div class="card-coach">${c.coach}</div>
+        </div>
+        <div class="card-right">
+          ${c.onHold ? holdBadge : (d !== null && d > 0 && d < 42 ? `<span class="closes-soon">Closes in ${d}d</span>` : '')}
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;margin-top:2px">
+            <div style="text-align:right">
+              <div style="font-size:9px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:2px">Sessions Completed</div>
+              <div style="font-size:20px;font-weight:300;color:var(--carbon);line-height:1">${c.past}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-util">
+        <div style="grid-column:1/-1">
+          <div class="util-item-label">Engagement timeline</div>
+          <div class="timeline-bar-wrap">
+            <div>
+              <div class="tl-dates">
+                <span>${fMo(c.indStart)}</span>
+                <span>${fMo(c.close)}</span>
+              </div>
+              <div class="tl-track-outer">
+                <div class="tl-today-tick" style="left:${todayPct}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="util-item-label">Next session</div>
+          <div class="util-item-value">${c.onHold ? 'TBD' : (fD(c.next) || '—')}</div>
+        </div>
+        <div style="display:flex;align-items:flex-end;justify-content:flex-end">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.5px;color:#2a5a8c;background:#deeaf7;border:1px solid #b0ceed;border-radius:20px;padding:3px 9px">${c.cadence.charAt(0).toUpperCase() + c.cadence.slice(1)}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.sF = f => { af = f; renderFilters(); renderCards(); };
+
+
+
+
+// ─── CALENDAR ───────────────────────────────────────────────────────────────
+const CAL_EVENTS = [
+// Updated: May 8 2026
+  { date: "2026-01-12", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "3pm PT" },
+  { date: "2026-01-12", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-01-13", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "1:30pm PT" },
+  { date: "2026-01-13", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "2:30pm PT" },
+  { date: "2026-01-13", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", time: "3:30pm PT" },
+  { date: "2026-01-20", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "11:30am PT" },
+  { date: "2026-01-26", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-01-27", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "3pm PT" },
+  { date: "2026-01-28", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", inPerson: true, time: "2pm PT" },
+  { date: "2026-01-28", label: "Drew Rowny", sub: "Michelle Alana", type: "session", inPerson: true, time: "3pm PT" },
+  // FEBRUARY
+  { date: "2026-02-04", label: "PLT Offsite @ Trium", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  { date: "2026-02-09", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-02-10", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", time: "2pm PT" },
+  { date: "2026-02-12", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "1:15pm PT" },
+  { date: "2026-02-18", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", inPerson: true, time: "3:30pm PT" },
+  { date: "2026-02-18", label: "Drew Rowny", sub: "Michelle Alana", type: "session", inPerson: true, time: "3:30pm PT" },
+  { date: "2026-02-23", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-02-25", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "9:30am PT" },
+  { date: "2026-02-25", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", inPerson: true, time: "2pm PT" },
+  { date: "2026-02-25", label: "Drew Rowny", sub: "Michelle Alana", type: "session", inPerson: true, time: "3pm PT" },
+  { date: "2026-02-26", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  // MARCH
+  { date: "2026-03-03", label: "EPD Offsite @ Trium", sub: "Michelle · Stephanie", type: "offsite", time: "9:30am PT" },
+  { date: "2026-03-09", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "3:30pm PT" },
+  { date: "2026-03-09", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-03-10", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", time: "2pm PT" },
+  { date: "2026-03-11", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "3pm PT" },
+  { date: "2026-03-19", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "1pm PT" },
+  { date: "2026-03-23", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "1pm PT" },
+  { date: "2026-03-23", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "3pm PT" },
+  { date: "2026-03-23", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-03-30", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "3pm PT" },
+  // APRIL
+  { date: "2026-04-07", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "3pm PT" },
+  { date: "2026-04-13", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", time: "9am PT" },
+  { date: "2026-04-13", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "4pm PT" },
+  { date: "2026-04-16", label: "PLT Offsite @ Trium", sub: "Michelle · Stephanie · Catherine", type: "offsite", time: "8am PT" },
+  { date: "2026-04-17", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "10am PT" },
+  { date: "2026-04-17", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "3pm PT" },
+  { date: "2026-04-20", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-04-29", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "10am PT" },
+  // MAY
+  { date: "2026-05-01", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "9am PT" },
+  { date: "2026-05-01", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "1pm PT" },
+  { date: "2026-05-04", label: "Jack Conte", sub: "Stephanie Soler", type: "session", time: "3pm PT" },
+  { date: "2026-05-04", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4:30pm PT" },
+  { date: "2026-05-08", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "3pm PT" },
+  { date: "2026-05-11", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", time: "9am PT" },
+  { date: "2026-05-11", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-05-11", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "2pm PT" },
+  { date: "2026-05-11", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", time: "2pm PT" },
+  { date: "2026-05-14", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "12:30pm PT" },
+  { date: "2026-05-18", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-05-18", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-05-27", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-05-27", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "10am PT" },
+  { date: "2026-05-22", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "10am PT" },
+  { date: "2026-05-28", label: "Drew Rowny", sub: "Michelle Alana", type: "session", time: "9:30am PT" },
+  // JUNE
+  { date: "2026-06-08", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "12pm PT" },
+  { date: "2026-06-08", label: "Kathleen Pacini", sub: "Michelle Alana", type: "session", inPerson: true, time: "1pm PT" },
+  { date: "2026-06-08", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "2pm PT" },
+  { date: "2026-06-08", label: "Drew Rowny", sub: "Michelle Alana", type: "session", inPerson: true, time: "2pm PT" },
+  { date: "2026-06-08", label: "Paige Fitzgerald", sub: "Michelle Alana", type: "session", inPerson: true, time: "3pm PT" },
+  { date: "2026-06-11", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  { date: "2026-06-15", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-06-15", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  { date: "2026-06-15", label: "Patreon Symmetry Call", sub: "Michelle · Catherine · Stephanie", type: "symmetry", time: "1pm PT" },
+  { date: "2026-06-22", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-06-29", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-06-29", label: "Shannon Ma", sub: "Stephanie Soler", type: "session", inPerson: true, time: "4pm PT" },
+  // JULY
+  { date: "2026-07-06", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-07-13", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-07-15", label: "HOLD: PLT Offsite @ Trium", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  { date: "2026-07-16", label: "HOLD: PLT Offsite @ Trium (Day 2)", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  { date: "2026-07-17", label: "HOLD: PLT Offsite @ Trium (Day 3)", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  { date: "2026-07-20", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-07-23", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  { date: "2026-07-27", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // AUGUST
+  { date: "2026-08-03", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-08-10", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-08-17", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-08-20", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  { date: "2026-08-24", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-08-31", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // SEPTEMBER
+  { date: "2026-09-07", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-09-14", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-09-21", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-09-24", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  { date: "2026-09-28", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // OCTOBER
+  { date: "2026-10-05", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-10-12", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-10-19", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-10-26", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-10-29", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "1pm PT" },
+  { date: "2026-10-29", label: "HOLD: PLT Offsite @ Trium", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  { date: "2026-10-30", label: "HOLD: PLT Offsite @ Trium (Day 2)", sub: "Michelle · Stephanie", type: "offsite", time: "8am PT" },
+  // NOVEMBER
+  { date: "2026-11-02", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-11-09", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-11-16", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-11-19", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "11am PT" },
+  { date: "2026-11-23", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-11-30", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // DECEMBER
+  { date: "2026-12-07", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-12-14", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-12-17", label: "Nicole Hawkins", sub: "Catherine Ambrozewicz", type: "session", time: "2pm PT" },
+  { date: "2026-12-21", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2026-12-28", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // JANUARY 2027
+  { date: "2027-01-04", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-01-11", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-01-18", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-01-25", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // FEBRUARY 2027
+  { date: "2027-02-01", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-02-08", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-02-15", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-02-22", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // MARCH 2027
+  { date: "2027-03-01", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-03-08", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-03-15", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-03-22", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-03-29", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // APRIL 2027
+  { date: "2027-04-05", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-04-12", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-04-19", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-04-26", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // MAY 2027
+  { date: "2027-05-03", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-05-10", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-05-17", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-05-24", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-05-31", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // JUNE 2027
+  { date: "2027-06-07", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-06-14", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-06-21", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-06-28", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  // JULY 2027
+  { date: "2027-07-05", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-07-12", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-07-19", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+  { date: "2027-07-26", label: "Jack Conte", sub: "Stephanie Soler", type: "session", inPerson: true, time: "In person" },
+];
+
+let calYear = 2026, calMonth = 4;
+
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function renderCalendar() {
+  document.getElementById('cal-title').textContent = MONTH_NAMES[calMonth] + ' ' + calYear;
+  const grid = document.getElementById('cal-grid');
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = new Date();
+  const todayStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+
+  const byDate = {};
+  CAL_EVENTS.forEach(e => {
+    if (!byDate[e.date]) byDate[e.date] = [];
+    byDate[e.date].push(e);
+  });
+
+  let cells = '';
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    cells += `<div style="background:var(--off-white);min-height:100px;padding:8px 6px"></div>`;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const isToday = dateStr === todayStr;
+    const events = byDate[dateStr] || [];
+    const dayNum = `<div style="font-size:12px;font-weight:${isToday?'700':'400'};color:${isToday?'var(--white)':'var(--text-primary)'};background:${isToday?'var(--carbon)':'transparent'};width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4px">${d}</div>`;
+
+    const evHtml = events.map(e => {
+      const bg = e.type === 'symmetry' ? 'var(--deep-yellow)' : e.type === 'offsite' ? 'var(--sage)' : 'var(--blue-gray)';
+      const fg = e.type === 'symmetry' ? 'var(--brown)' : 'var(--white)';
+      const ipBadge = e.inPerson ? `<span style="opacity:0.75;margin-left:3px">📍</span>` : '';
+      const tipTime = e.time ? `<div class="cal-tip-time">${e.time}</div>` : '';
+      const tipIp   = e.inPerson ? `<div class="cal-tip-ip">📍 In person</div>` : '';
+      const tooltip = `<div class="cal-tip"><div class="cal-tip-name">${e.label}</div><div class="cal-tip-coach">${e.sub}</div>${tipTime}${tipIp}</div>`;
+      return `<div class="cal-chip" style="background:${bg};color:${fg};border-radius:3px;padding:2px 5px;font-size:10px;font-weight:500;margin-bottom:2px;line-height:1.3;cursor:default;display:flex;align-items:center;justify-content:space-between;gap:2px">${tooltip}<span>${e.label}</span>${ipBadge}</div>`;
+    }).join('');
+
+    cells += `<div style="background:var(--white);min-height:100px;padding:8px 6px;vertical-align:top">${dayNum}${evHtml}</div>`;
+  }
+
+  // Pad remaining cells
+  const totalCells = firstDay + daysInMonth;
+  const remainder = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 0; i < remainder; i++) {
+    cells += `<div style="background:var(--off-white);min-height:100px;padding:8px 6px"></div>`;
+  }
+
+  grid.innerHTML = cells;
+
+  // Empty state note if no events this month
+  const monthStr = calYear + '-' + String(calMonth+1).padStart(2,'0');
+  const hasEvents = CAL_EVENTS.some(e => e.date.startsWith(monthStr));
+  const existing = document.getElementById('cal-empty-note');
+  if (existing) existing.remove();
+  if (!hasEvents) {
+    const note = document.createElement('div');
+    note.id = 'cal-empty-note';
+    note.style = 'margin-top:16px;font-size:12px;color:var(--text-tertiary);font-style:italic;text-align:center';
+    note.textContent = 'No sessions scheduled in Airtable for this month yet.';
+    grid.after(note);
+  }
+}
+
+const CAL_MIN = { year: 2026, month: 0 };  // Jan 2026
+const CAL_MAX = { year: 2027, month: 6 };  // Jul 2027
+
+window.calNav = function(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  // Clamp to bounds
+  if (calYear < CAL_MIN.year || (calYear === CAL_MIN.year && calMonth < CAL_MIN.month)) {
+    calYear = CAL_MIN.year; calMonth = CAL_MIN.month;
+  }
+  if (calYear > CAL_MAX.year || (calYear === CAL_MAX.year && calMonth > CAL_MAX.month)) {
+    calYear = CAL_MAX.year; calMonth = CAL_MAX.month;
+  }
+  renderCalendar();
+};
+
+window.goToday = function() {
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  renderCalendar();
+};
+
+
+function showTab(tab) {
+  ['active', 'sow', 'offsite', 'calendar'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active',
+      (i === 0 && tab === 'active') ||
+      (i === 1 && tab === 'sow') ||
+      (i === 2 && tab === 'offsite') ||
+      (i === 3 && tab === 'calendar')
+    );
+  });
+  if (tab === 'calendar') renderCalendar();
+}
+
+// ─── INIT ───────────────────────────────────────────────────────────────────
+renderStats();
+renderFilters();
+renderCards();
+
+document.getElementById('last-updated').textContent =
+  'Last updated: ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+/* ── REFRESH DATA (direct Airtable API) ── */
+async function refreshData() {
+  const btn   = document.getElementById('refresh-btn');
+  const icon  = document.getElementById('refresh-icon');
+  const label = document.getElementById('refresh-label');
+  btn.disabled = true;
+  icon.classList.add('spinning');
+  label.textContent = 'Refreshing...';
+
+  const AT_TOKEN = 'patbJeayLxjsfgD5t.eab5d86142e810bc3d66ffbef4596e9cf6e03482e0ec50cf83a9c813534597d4';
+  const BASE_ID  = 'appWoXi55ytoPtEiw';
+  const SESSIONS = 'tblFjB1ezLR6saJkv';
+  const ASSIGNS  = 'tblcmnNlyAhLCEQ0z';
+
+  // Field IDs — Sessions table
+  const F_STATUS = 'fld6YmmTkbq89GmXy'; // Status
+  const F_ASSIGN = 'fldPAY6d7ZDE4Mgjl'; // Coachee assignment link
+  // Field IDs — Coachee assignment table
+  const F_NEXT   = 'fldpnTFP7Z5Hp3iJc'; // Next session date
+
+  // H1 2026 SOW record IDs → coachee name
+  const H1_SOWS = {
+    'recnAV408R3hbc5w5': 'Jack Conte',
+    'recGoQPR7zC7pZWqA': 'Shannon Ma',
+    'rec2eToXuLlwcj6ip': 'Drew Rowny',
+    'recSHtybkF5OgWRDY': 'Paige Fitzgerald',
+    'recx1e6CqJHiPIDeU': 'Kathleen Pacini',
+    'rec1jJfGsvnNl8WNF': 'Nicole Hawkins',
+  };
+
+  try {
+    // ── Step 1: page through Sessions table, count Delivered per H1 2026 SOW ──
+    const counts = {};
+    Object.values(H1_SOWS).forEach(n => counts[n] = 0);
+
+    let allSessions = [], offset = null;
+    do {
+      const url = `https://api.airtable.com/v0/${BASE_ID}/${SESSIONS}` +
+        `?fields[]=${F_STATUS}&fields[]=${F_ASSIGN}` +
+        (offset ? `&offset=${offset}` : '');
+      const res = await fetch(url, { headers: { Authorization: 'Bearer ' + AT_TOKEN } });
+      if (!res.ok) throw new Error('Sessions fetch error ' + res.status);
+      const data = await res.json();
+      allSessions = allSessions.concat(data.records || []);
+      offset = data.offset || null;
+    } while (offset);
+
+    allSessions.forEach(r => {
+      if (r.fields[F_STATUS] !== 'Delivered') return;
+      (r.fields[F_ASSIGN] || []).forEach(sowId => {
+        if (H1_SOWS[sowId]) counts[H1_SOWS[sowId]]++;
+      });
+    });
+
+    // ── Step 2: fetch next session dates from assignment records ──
+    const sowIds = Object.keys(H1_SOWS);
+    const assignUrl = `https://api.airtable.com/v0/${BASE_ID}/${ASSIGNS}?` +
+      sowIds.map(id => `records[]=${id}`).join('&') +
+      `&fields[]=${F_NEXT}`;
+    const aRes = await fetch(assignUrl, { headers: { Authorization: 'Bearer ' + AT_TOKEN } });
+    if (!aRes.ok) throw new Error('Assignments fetch error ' + aRes.status);
+    const aData = await aRes.json();
+
+    (aData.records || []).forEach(r => {
+      const name = H1_SOWS[r.id];
+      if (!name) return;
+      const found = DATA.find(d => d.name === name);
+      if (!found) return;
+      if (counts[name] != null) found.past = counts[name];
+      const nextDate = r.fields[F_NEXT];
+      if (nextDate) found.next = String(nextDate).slice(0, 10);
+    });
+
+    // ── Step 3: re-render ──
+    renderStats(); renderFilters(); renderCards();
+    document.getElementById('last-updated').textContent =
+      'Last updated: ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    label.textContent = 'Up to date ✓';
+    setTimeout(() => { label.textContent = 'Refresh data'; btn.disabled = false; }, 2500);
+
+  } catch(err) {
+    console.error('Refresh failed:', err);
+    label.textContent = 'Failed — try again';
+    setTimeout(() => { label.textContent = 'Refresh data'; btn.disabled = false; }, 3000);
+  }
+  icon.classList.remove('spinning');
+}
+</script>
+</body>
+</html>
